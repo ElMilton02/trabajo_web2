@@ -1,5 +1,4 @@
-integrantes n°1 :Melchior, Henry
-integrantes n°2 :Palucci, Milton Alejo
+integrantes :Melchior, Henry; Palucci, Milton Alejo
 
 tematica: tienda de ropa
 
