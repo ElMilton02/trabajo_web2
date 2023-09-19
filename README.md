@@ -1,4 +1,4 @@
-integrantes :Melchior, Henry; Palucci, Milton Alejo
+integrantes :Melchior, Henry(henrymelchior028@gmail.com); Palucci, Milton Alejo(miltonpalucci02@gmail.com)
 
 tematica: tienda de ropa
 
