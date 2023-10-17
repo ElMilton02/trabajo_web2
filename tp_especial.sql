@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 01:58:49
+-- Tiempo de generación: 18-10-2023 a las 00:35:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -57,6 +57,36 @@ CREATE TABLE `ropa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `ropa`
+--
+
+INSERT INTO `ropa` (`id`, `marca_id`, `prenda`, `talle`, `precio`) VALUES
+(1, 1, 'remera', 'xl', 25000),
+(2, 2, 'sapatilla', '43', 50000);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(45) NOT NULL,
+  `clave_usuario` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `usuario`, `clave_usuario`) VALUES
+(1, 'webadmin', 'admin'),
+(2, 'webadmin', 'admin'),
+(3, 'webadmin', '$2y$10$1I0vAsil764aMFLLW.MtbOA1B/7BbQkuhHHCoe'),
+(4, 'luis', '$2y$10$aT1Cb.9T3yd0cySkFn59augU0mjpWgbngD.whO');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -74,6 +104,12 @@ ALTER TABLE `ropa`
   ADD KEY `fk_marca_id` (`marca_id`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -81,6 +117,18 @@ ALTER TABLE `ropa`
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `ropa`
+--
+ALTER TABLE `ropa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
