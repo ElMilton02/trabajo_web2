@@ -14,8 +14,8 @@ class AuthHelper
     {
         AuthHelper::init();
         $_SESSION['USER_ROL'] = $userDb->rol;
-        $_SESSION['USER_NAME'] = $userDb->usuario;
-        $_SESSION['USER_ID'] = $userDb->id;
+        $_SESSION['USER_NAME'] = $userDb->nombre_usuario;
+        $_SESSION['USER_ID'] = $userDb->id_usuarios;
     }
 
     public static function logOut()
@@ -31,7 +31,7 @@ class AuthHelper
         AuthHelper::init();
         if (!isset($_SESSION['USER_ID'])) {
             $controller = new ErrorController();
-            $controller->showErrorNonUser('Para acceder al contenido, por favor inicia sesión',$page);
+            $controller->showErrorNonUser('Para acceder al contenido por favor inicia sesión',$page);
         }
     }
 }

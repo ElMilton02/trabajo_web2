@@ -1,6 +1,6 @@
 <?php
 require_once 'apps/controllers/HomeController.php';
-
+require_once 'apps/controllers/CategoriesController.php';
 require_once 'apps/controllers/AuthController.php';
 require_once 'apps/controllers/AboutController.php';
 
@@ -18,6 +18,46 @@ switch ($params[0]) {
     case 'home': //Muestra el Home
         $controller = new HomeController();
         $controller->showHome();
+        break;
+    case 'categorias': //Muestra lista de categorias
+        $controller = new CategoriesController();
+        $controller->showCategories();
+        break;
+    case 'ropaByCategoria': //Muestra lista de ropas
+        $controller = new CategorieController();
+        $controller->showClothesByCategorieId($params[1]);
+        break;
+    case 'eliminarRopa':
+        $controller = new CategorieController();
+        $controller->removeClothes($params[1], $params[2]);
+        break;
+    case 'agregarRopa':
+        $controller = new CategorieController();
+        $controller->addClothes($params[1]);
+        break;
+    case 'actualizarRopa ':
+        $controller = new CategorieController();
+        $controller->updateClothes($params[1]);
+        break;
+    case 'editarRopa':
+        $controller = new CategorieController();
+        $controller->editClothes($params[1]);
+        break;
+    case 'eliminarCategoria':
+        $controller = new CategoriesController();
+        $controller->removeCategorie($params[1]);
+        break;
+    case 'agregarCategoria':
+        $controller = new CategoriesController();
+        $controller->addCategorie();
+        break;
+    case 'actualizarCategoria':
+        $controller = new CategoriesController();
+        $controller->updateCategorie($params[1]);
+        break;
+    case 'editCategoria':
+        $controller = new CategoriesController();
+        $controller->editCategorie($params[1]);
         break;
     case 'login':
         $controller = new AuthController();
@@ -44,7 +84,7 @@ switch ($params[0]) {
         $controller->logOut();
         break;
     default:
-    $controller = new ErrorController();
-    $controller->showError404($error);
+        $controller = new ErrorController();
+        $controller->showError404($error);
         break;
 }

@@ -5,24 +5,28 @@ class CategoriesView
     public function showCategories($categories, $error = null)
     {
         $rol = $_SESSION['USER_ROL'];
-        require_once './templates/Categories.phtml';
+        require_once './templates/categories.phtml';
 
         return $href;
     }
 
     public function showEditCategorieForm($categorie, $id, $error = null)
     {
-        require_once './templates/EditCategorie.phtml';
+        require_once './templates/editCategorie.phtml';
     }
 }
 
 class CategorieView
 {
 
-    public function showRopaByCategorieId($prendas, $categorieId, $error = null)
+    public function showClothesByCategorieId($listClothes, $categorieId, $error = null)
     {
         $rol = $_SESSION['USER_ROL'];
-        require_once './templates/Prendas.phtml';
+        require_once './templates/Clothes.phtml';
     }
 
+    public function showEditClothesForm($idClothes, $error = null)
+    {
+        require_once './templates/Editclothes.phtml';
+    }
 }

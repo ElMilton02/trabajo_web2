@@ -1,23 +1,15 @@
 <?php
 
-require_once './database/config.php';
+require_once './config.php';
+require_once './apps/models/Model.php';
 
-class CategoriesModel
+class CategoriesModel extends Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        require_once('./database/Conection_db.php');
-
-        $conexionDb = new ConectionDb(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        $this->db = $conexionDb->getDb();
-    }
 
     function getCategories()
     {
 
-        $query = $this->db->prepare('SELECT * FROM marcas');
+        $query = $this->db->prepare('SELECT * FROM categorias');
         $query->execute();
 
         // $categorias es un arreglo de categorías
@@ -28,21 +20,20 @@ class CategoriesModel
 
     function deleteCategoria($idCategorie)
     {
-        $query = $this->db->prepare('DELETE FROM marcas WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM categorias WHERE id_categoria = ?');
         $query->execute([$idCategorie]);
-        
     }
-    
+
     function insertCategorie($categorie)
     {
-        $query = $this->db->prepare('INSERT INTO marcas (marca) VALUES(?)');
+        $query = $this->db->prepare('INSERT INTO categorias (categoria) VALUES(?)');
         $query->execute([$categorie]);
         return $this->db->lastInsertId();
     }
 
     public function getCategorieById($id)
     {
-        $query = $this->db->prepare('SELECT * FROM marcas WHERE id = ?');
+        $query = $this->db->prepare('SELECT * FROM categorias WHERE id_categoria = ?');
         $query->execute([$id]);
 
         // Obtener la categoría como un objeto
@@ -59,22 +50,14 @@ class CategoriesModel
 }
 
 
-class CategorieModel
+class CategorieModel extends Model
 {
-    private $db;
 
-    public function __construct()
-    {
-        require_once('./database/Conection_db.php');
 
-        $conexionDb = new ConectionDb(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        $this->db = $conexionDb->getDb();
-    }
-
-    function getBooksByCategorie($href)
+    function getClothesByCategorie($href)
     {
 
-        $query = $this->db->prepare('SELECT * FROM ropa WHERE marca_id = ?');
+        $query = $this->db->prepare('SELECT * FROM ropas WHERE id_categoria = ?');
         $query->execute([$href]);
 
         // $categorias es un arreglo de categorias
@@ -83,13 +66,26 @@ class CategorieModel
         return $categorie2;
     }
 
-    function deleteRopa($idRopa)
+    function deleteClothes($idClothes)
     {
 
-        $query = $this->db->prepare('DELETE FROM ropa WHERE id = ?');
-        $query->execute([$idRopa]);
+        $query = $this->db->prepare('DELETE FROM ropas WHERE id_ropa = ?');
+        $query->execute([$idClothes]);
     }
 
-   
-    //<-no terminado->//
+    function insertClothes($id_Categorie, $nombre_ropa, $precio_ropa)
+    {
+        // Obtener la conexión y asignarla a $this->db
+        $query = $this->db->prepare('INSERT INTO ropas (id_categoria, nombre_ropa, precio_ropa) VALUES (?, ?, ?, ?)');
+
+        $query->execute([$id_Categorie, $nombre_ropa, $precio_ropa]);
+        return $this->db->lastInsertId();
+    }
+
+    public function modifyClothes($idClothes, $newName, $newPrice)
+    {
+
+        $query = $this->db->prepare('UPDATE ropas SET nombre_ropa = ?, precio_ropa = ? WHERE id_ropa = ?');
+        $query->execute([$newName, $newPrice, $idClothes]);
+    }
 }
